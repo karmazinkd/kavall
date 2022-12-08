@@ -149,11 +149,9 @@ class _Fetched extends StatelessWidget {
   Widget build(BuildContext context) {
     if (models.isEmpty) {
       return SliverFillRemaining(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("No deliveries for this date", style: context.theme.textTheme.titleMedium),
-          ],
+        hasScrollBody: false,
+        child: Center(
+          child: Text("No deliveries for this date", style: context.theme.textTheme.titleMedium),
         ),
       );
     } else {
