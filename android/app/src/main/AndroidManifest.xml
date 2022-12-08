@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kavall.kavall">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="kavall"
         android:name="${applicationName}"
