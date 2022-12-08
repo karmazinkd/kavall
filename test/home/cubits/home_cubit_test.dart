@@ -45,12 +45,16 @@ void main() {
     late HomeCubit cubit;
     late DateTime now;
     late String nowDateText;
+    late DateTime prevDate;
+    late String prevDateText;
 
     setUp(() {
       mockRepository = MockIDeliveryTimeRepository();
       cubit = HomeCubit(repository: mockRepository);
       now = DateTime.now();
       nowDateText = DateTimeHelper.convertDateTimeToString(now);
+      prevDate = now.subtract(const Duration(days: 2));
+      prevDateText = DateTimeHelper.convertDateTimeToString(prevDate);
     });
 
     tearDown(() {
@@ -107,6 +111,27 @@ void main() {
       expect: () => [const HomeState.loading(), const HomeState.failed(message: errorMsg)],
       verify: (cubit) {
         verify(() => mockRepository.fetchDeliveryTimeByDate(nowDateText)).called(1);
+      },
+    );
+
+    blocTest<HomeCubit, HomeState>(
+      'onDatePicked updates selectedDate and starts fetching with this date: '
+      'repository.fetchDeliveryTimeByDate() is called with a new date, '
+      'states: HomeState.loading(), HomeState.fetched(),'
+      'emitted Fetched state contains correct list of processed records'
+      'selectedDate was updated in the cubit',
+      build: () => cubit,
+      act: (cubit) async {
+        when(() => mockRepository.fetchDeliveryTimeByDate(prevDateText)).thenAnswer(
+          (invocation) =>
+              Future.value(const Result<List<DeliveryTimeRecord>>.success(data: fetchedRecords)),
+        );
+
+        await cubit.onDatePicked(prevDate);
+      },
+      expect: () => [const HomeState.loading(), const HomeState.success(models: processedModels)],
+      verify: (cubit) {
+        expect(cubit.getSelectedDate(), prevDate);
       },
     );
   });
