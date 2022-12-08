@@ -1,7 +1,9 @@
 # kavall
 Kavall delivery statistics
 
-![kavall1](https://user-images.githubusercontent.com/15160049/206563970-bf35f7e8-9439-4997-b462-90b24b3fe5da.png)
+
+![kavall_gif](https://user-images.githubusercontent.com/15160049/206569066-222cdec0-46bd-4cda-9541-0ebc9569dae9.gif)
+
 
 ### Environment
 Dart 2.18.1
