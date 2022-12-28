@@ -30,13 +30,17 @@ class DeliveryTimeCard extends StatelessWidget {
           ),
           title: Row(
             children: [
-              Text(
-                "Average time: ",
-                style: AppStyles.bodyL.copyWith(
-                  fontWeight: FontWeight.bold,
+              Expanded(
+                child: Text(
+                  "Average time: ",
+                  style: AppStyles.bodyL.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              Text(model.averageTimeText, style: AppStyles.bodyL),
+              Expanded(
+                child: Text(model.averageTimeText, style: AppStyles.bodyL),
+              ),
             ],
           ),
           subtitle: Row(

@@ -12,7 +12,7 @@ import 'package:mocktail/mocktail.dart';
 class MockIDeliveryTimeRepository extends Mock implements IDeliveryTimeRepository {}
 
 void main() {
-  group('EnableBiometricsScreenCubit', () {
+  group('HomeCubit', () {
     const List<DeliveryTimeRecord> fetchedRecords = [
       DeliveryTimeRecord(storeId: 2, date: "2022-05-18", orderId: 2, seconds: 700),
       DeliveryTimeRecord(storeId: 3, date: "2022-05-18", orderId: 55, seconds: 500),

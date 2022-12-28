@@ -13,6 +13,12 @@ extension FutureToResultExtension<T> on Future<T> {
         exception: e,
         stackTrace: st,
       );
+    } on Object catch (e, st) {
+      return Result<T>.failed(
+        message: e.toString(),
+        exception: Exception(e.toString()),
+        stackTrace: st,
+      );
     }
   }
 }
